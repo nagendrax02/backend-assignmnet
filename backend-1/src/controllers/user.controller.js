@@ -8,11 +8,12 @@ router.post("", async(req, res)=>{
 
     try{
     const users = await User.create(req.body);
+    const firstName = users.first_name;
     await sendEmail({
       from: users.email, // sender address
         to: "bar@example.com, baz@example.com", // list of receivers
-        subject: "Hello I am with refactoring last ✔", // Subject line
-        text: "I am working fine with refactoring?", // plain text body
+        subject: firstName +" Welcome to ABC System✔", // Subject line
+        text: firstName + "Hi please confirm your email address", // plain text body
         html: "<b>Hello world?</b>", // html body
     });
     
